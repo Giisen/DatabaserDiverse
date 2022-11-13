@@ -1,12 +1,14 @@
 --create database DjurDb;
+--use DjurDb;
 
---create table DjurDb.dbo.DjurTbl(
+
+--create table DjurTbl(
 --Id Int Primary Key,
 --Namn nvarchar(max) not null);
 
 
 
---INSERT INTO DjurDb.dbo.DjurTbl 
+--INSERT INTO DjurTbl 
 --(Id,Namn)
 --VALUES
 --(1,'Hamster'),
@@ -16,8 +18,19 @@
 
 
 --select *
---from DjurDb.dbo.DjurTbl
+--from DjurTbl
 --where Namn like '%a%';
 
---drop table  DjurDb.dbo.DjurTbl;
-drop database DjurDb;
+--drop table  DjurTbl;
+--use master;
+--drop database DjurDb;
+
+--create database XXX;
+-- use XXX;
+
+--create table StudieGrupp(
+--Id int Primary Key,
+--Förnamn nvarchar(max) not null,
+--Efternamn nvarchar(max) not null,
+--Ålder int,
+--Hemort nvarchar(max) not null);
