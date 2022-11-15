@@ -46,7 +46,7 @@ use Everyloop;
 -- or name like 'U%';
 
 
---Skapa en ny tabell med alla rader från tabellen Elements. Den nya tabellen ska innehålla ”Symbol” och ”Name” från orginalet, samt en tredje kolumn med värdet ’Yes’ för de rader där ”Name” börjar med bokstäverna i ”Symbol”, och ’No’ för de rader där de inte gör det.
+--5. Skapa en ny tabell med alla rader från tabellen Elements. Den nya tabellen ska innehålla ”Symbol” och ”Name” från orginalet, samt en tredje kolumn med värdet ’Yes’ för de rader där ”Name” börjar med bokstäverna i ”Symbol”, och ’No’ för de rader där de inte gör det.
 
 --select * from Elements3;
 
@@ -61,4 +61,21 @@ use Everyloop;
 --into Elements3 from Elements;
 
 --select * from Elements3;
+
+
+--6. Kopiera tabellen Colors till Colors2, men skippa kolumnen ”Code”. Gör sedan en select från Colors2 som ger samma resultat som du skulle fått från select * from Colors; (Dvs, återskapa den saknade kolumnen från RGBvärdena i resultatet).
+
+--select
+--Code
+--into Colors2 from Colors;
+
+--select
+--t1.Code,
+--t2.Red,
+--t2.Green,
+--t2.Blue
+--from
+--Colors2 t1
+--left join Colors t2
+--on t1.Code=t2.Code;
 
