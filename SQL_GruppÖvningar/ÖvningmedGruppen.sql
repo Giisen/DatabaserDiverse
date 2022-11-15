@@ -52,16 +52,13 @@ use Everyloop;
 
 --select 
 --Symbol,
---Name
+--Name,
+--case 
+--when Symbol like left([Name],1) 
+--or Symbol like left([Name],2) 
+--then 'Yes' else 'No' 
+--end as [Match]
 --into Elements3 from Elements;
 
---Alter table Elements3
---add leftttwo nvarchar;
+--select * from Elements3;
 
-Select
-Symbol,
-Name,
-case 
-when Symbol like left([Name],1) or Symbol like left([Name],2) then 'Yes' else 'No' end as lefttwo
-
-from Elements3;
