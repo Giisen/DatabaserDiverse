@@ -35,7 +35,7 @@ use Everyloop;
 
 
 
-select * from Elements2;
+--select * from Elements2;
 
 --Delete from Elements2
 --where Name in('Erbium', 'Helium', 'Nitrogen', 'Platinum', 'Selenium')
@@ -45,3 +45,23 @@ select * from Elements2;
 -- or Name like 'O%'
 -- or name like 'U%';
 
+
+--Skapa en ny tabell med alla rader från tabellen Elements. Den nya tabellen ska innehålla ”Symbol” och ”Name” från orginalet, samt en tredje kolumn med värdet ’Yes’ för de rader där ”Name” börjar med bokstäverna i ”Symbol”, och ’No’ för de rader där de inte gör det.
+
+--select * from Elements3;
+
+--select 
+--Symbol,
+--Name
+--into Elements3 from Elements;
+
+--Alter table Elements3
+--add leftttwo nvarchar;
+
+Select
+Symbol,
+Name,
+case 
+when Symbol like left([Name],1) or Symbol like left([Name],2) then 'Yes' else 'No' end as lefttwo
+
+from Elements3;
