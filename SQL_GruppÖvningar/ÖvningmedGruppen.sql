@@ -31,6 +31,17 @@ use Everyloop;
 
 --Ta bort de rader från (kopia på) tabellen Elements där ”Name” är någon av följande: 'Erbium', 'Helium', 'Nitrogen', 'Platinum', 'Selenium', samt alla rader där ”Name” börjar på någon av bokstäverna d, k, m, o, eller u.
 
+--select * into Elements2 from Elements;
 
 
+
+select * from Elements2;
+
+--Delete from Elements2
+--where Name in('Erbium', 'Helium', 'Nitrogen', 'Platinum', 'Selenium')
+-- Or Name like 'D%'
+-- Or Name like 'K%'
+-- Or Name like 'M%'
+-- or Name like 'O%'
+-- or name like 'U%';
 
