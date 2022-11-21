@@ -2,9 +2,11 @@ use Everyloop;
 
 --1.Ta ut data (select) från tabellen GameOfThrones på sådant sätt att ni får ut en kolumn ’Title’ med titeln samt en kolumn ’Episode’ som visar episoder och säsonger i formatet ”S01E01”, ”S01E02”, osv. Tips: kolla upp funktionen format()
 
+--select * from GameOfThrones2
+
 --select 
 --title, 
---concat('S', format(season, '00'), 
+--concat('S', format(season, '00'),
 --'E', format(episode, '00')) as episode
 --from GameOfThrones2;
 
@@ -12,9 +14,14 @@ use Everyloop;
 
 --2.Uppdatera (kopia på) tabellen user och sätt username för alla användare så den blir de 2 första bokstäverna i förnamnet, och de 2 första i efternamnet (istället för 3+3 som det är i orginalet). Hela användarnamnet ska vara i små bokstäver.
 
---select * into Users2 from Users;
+
+--update Users2
+--set UserName =Lower(concat(substring(FirstName,1,2),substring(LastName,1,2)));
+
+
 --update Users2
 --set UserName =concat(substring(Lower(FirstName),1,2),substring(Lower(LastName),1,2));
+
 
 --select *
 --from
@@ -79,10 +86,29 @@ use Everyloop;
 --left join Colors t2
 --on t1.Code=t2.Code;
 
+--select 
+--Name,
+--Red,
+--Green,
+--Blue
+--into Colors3 from Colors;
+
+--select 
+--Name,
+--concat('#',
+--format(Red,'X2')+
+--format(Green,'X2')+
+--format(blue,'X2')) as code,
+--Red,
+--Green,
+--Blue
+--from colors3;
+
+--select * from Colors
 
 
 --7.Kopiera kolumnerna ”Integer” och ”String” från tabellen ”Types” till en ny tabell. Gör sedan en select från den nya tabellen som ger samma resultat som du skulle fått från select * from types;
-
+--drop table Types2
 --select
 --[Integer],
 --String
@@ -97,3 +123,13 @@ use Everyloop;
 --from [Types2] t1
 --left join [Types] t2
 --on t1.[Integer]=t2.[Integer];
+
+select 
+[Integer],
+[Integer] *0.01 as [Float],
+[String],
+DATETIME2FROMPARTS(2019,01,[Integer],09,[Integer],0,0,7) as [DateTime],
+Integer%2 as Bool
+from Types2;
+
+
