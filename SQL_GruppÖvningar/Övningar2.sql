@@ -37,3 +37,5 @@ order by Antal desc;
 
 select * from company.orders
 select * from company.order_details
+
+--3.Av de produkter som inte längre finns I vårat sortiment, hur mycket har vi sålt för totalt till Tyskland?
