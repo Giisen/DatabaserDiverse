@@ -107,7 +107,10 @@ t2.[Name] as Genre,
 t4.[Name] as Artist,
 t3.Title as Album,
 t1.[Name] as Track,
-format(DateAdd(ms,t1.Milliseconds*1,1),'mm:ss') as Lenght
+format(DateAdd(ms,t1.Milliseconds*1,1),'mm:ss') as [Length],
+concat(Format(t1.Bytes/1048576.0,'N1'),+' '+'MiB') as Size,
+case
+when t1.Composer is null then '-' else t1.Composer end as Composer
 
 
 from music.tracks t1
