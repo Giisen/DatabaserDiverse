@@ -112,7 +112,6 @@ concat(Format(t1.Bytes/1048576.0,'N1'),+' '+'MiB') as Size,
 case
 when t1.Composer is null then '-' else t1.Composer end as Composer
 
-
 from music.tracks t1
 
 join music.genres t2
@@ -124,9 +123,8 @@ on t1.AlbumId=t3.AlbumId
 join music.artists t4
 on t3.ArtistId=t4.ArtistId
 
+join music.playlist_track t5
+on t1.TrackId=t5.TrackId
 
-select * from music.tracks
-select * from music.albums
-select * from music.genres
-
+where t5.PlaylistId=17
 
