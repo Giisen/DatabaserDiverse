@@ -132,13 +132,20 @@ where t5.PlaylistId=17
 --1.Av alla audiospår, vilken artist har längst total speltid?
 select
 t1.[Name] as ArtistNamn,
-t2.Milliseconds
+sum(t3.Milliseconds) as TotLength
 
 from
 music.artists t1
 
-join music.tracks t2
-on t1.ArtistId=t2.
+join music.albums t2
+on t1.ArtistId=t2.ArtistId
+
+join music.tracks t3
+on t3.AlbumId=t2.AlbumId
+
+group by
+t1.[Name]
+order by TotLength desc
 
 
 
