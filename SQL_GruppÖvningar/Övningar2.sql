@@ -97,3 +97,33 @@ select * from company.suppliers
 select * from company.products
 select * from company.order_details
 select * from company.orders where ShippedDate between '2013-06-01' and '2013-08-31'
+
+
+--6.Använd dig av tabellerna från schema “music”, och utgå från:
+declare @playlist varchar(max) = 'Heavy Metal Classic';
+
+select 
+t2.[Name] as Genre,
+t4.[Name] as Artist,
+t3.Title as Album,
+t1.[Name] as Track,
+format(DateAdd(ms,t1.Milliseconds*1,1),'mm:ss') as Lenght
+
+
+from music.tracks t1
+
+join music.genres t2
+on t1.GenreId=t2.GenreId
+
+join music.Albums t3
+on t1.AlbumId=t3.AlbumId
+
+join music.artists t4
+on t3.ArtistId=t4.ArtistId
+
+
+select * from music.tracks
+select * from music.albums
+select * from music.genres
+
+
