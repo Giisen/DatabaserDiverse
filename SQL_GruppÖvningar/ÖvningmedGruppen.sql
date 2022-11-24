@@ -31,13 +31,15 @@ use Everyloop;
 --3.Uppdatera (kopia på) tabellen airports så att alla null-värden i kolumnerna Time och DST byts ut mot ’-’
 
 
---select * into Airports2 from Airports;
+select * into Airports2 from Airports;
 
---Update  Airports2
-----set [Time]= COALESCE([Time],'-')
+Update  Airports2
+--set [Time]= COALESCE([Time],'-')
 --set [DST] = COALESCE([DST],'-');
+set [DST] = ISNULL([DST],'-');  --ISNull är ett alternativ till coalesce
 
---select * from Airports2;
+
+select * from Airports2;
 
 --4.Ta bort de rader från (kopia på) tabellen Elements där ”Name” är någon av följande: 'Erbium', 'Helium', 'Nitrogen', 'Platinum', 'Selenium', samt alla rader där ”Name” börjar på någon av bokstäverna d, k, m, o, eller u.
 
