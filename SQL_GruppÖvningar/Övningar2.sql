@@ -108,7 +108,7 @@ t4.[Name] as Artist,
 t3.Title as Album,
 t1.[Name] as Track,
 format(DateAdd(ms,t1.Milliseconds*1,1),'mm:ss') as [Length],
-concat(Format(t1.Bytes/1048576.0,'N1'),+' '+'MiB') as Size,
+concat(Format(t1.Bytes*0.000001,'N1'),+' '+'MiB') as Size,
 case
 when t1.Composer is null then '-' else t1.Composer end as Composer
 
@@ -134,8 +134,6 @@ select
 t1.[Name] as ArtistNamn,
 sum(t3.Milliseconds) as TotLength
 --format(DateAdd(ms,sum(t3.Milliseconds)*1,1),'mm:ss') as [Length]
-
-
 from
 music.artists t1
 
@@ -149,6 +147,41 @@ group by
 t1.[Name]
 --format(DateAdd(ms,t3.Milliseconds*1,1),'mm:ss')
 order by TotLength desc
+
+--2.Vad är den genomsnittliga speltiden på den artistens låtar?
+select
+t1.[Name] as ArtistNamn,
+count(distinct t3.TrackId) as Antal,
+sum(t3.Milliseconds) as TotLength,
+sum(t3.Milliseconds)/count(distinct t3.TrackId) as AvgLength
+from
+music.artists t1
+
+join music.albums t2
+on t1.ArtistId=t2.ArtistId
+
+join music.tracks t3
+on t3.AlbumId=t2.AlbumId
+
+where t1.[Name] like 'Lost'
+group by
+t1.[Name]
+order by AvgLength desc
+
+
+--3.Vad är den sammanlagda filstorleken för all video?
+
+select
+t2.Name,
+Format(sum(Cast(t1.Bytes AS BIGINT))*0.000001,'N0') as Storlek
+from music.tracks t1
+
+join music.media_types t2
+on t1.MediaTypeId=t2.MediaTypeId
+
+where t2.[Name] like '%video%'
+group by
+t2.Name
 
 
 
