@@ -133,6 +133,8 @@ where t5.PlaylistId=17
 select
 t1.[Name] as ArtistNamn,
 sum(t3.Milliseconds) as TotLength
+--format(DateAdd(ms,sum(t3.Milliseconds)*1,1),'mm:ss') as [Length]
+
 
 from
 music.artists t1
@@ -145,6 +147,7 @@ on t3.AlbumId=t2.AlbumId
 
 group by
 t1.[Name]
+--format(DateAdd(ms,t3.Milliseconds*1,1),'mm:ss')
 order by TotLength desc
 
 
