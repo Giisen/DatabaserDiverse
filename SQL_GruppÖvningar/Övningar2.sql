@@ -100,6 +100,13 @@ select * from company.order_details
 select * from company.orders where ShippedDate between '2013-06-01' and '2013-08-31'
 
 
+
+
+
+
+---------------------------------------------Musik----------------------------------------------
+
+
 --6.Använd dig av tabellerna från schema “music”, och utgå från:
 declare @playlist varchar(max) = 'Heavy Metal Classic';
 
@@ -138,7 +145,7 @@ where t6.[Name]=@playlist
 
 
 
----------------------------------------------Musik----------------------------------------------
+
 
 --1.Av alla audiospår, vilken artist har längst total speltid?
 select
@@ -198,7 +205,7 @@ t2.Name
 
 
 --4.Vilket är det högsta antal artister som finns på en enskild spellista?
-select
+select --top 1
 t1.[Name] as Spellista,
 count(distinct(t5.artistid)) as UnikaArtister,
 count(t5.artistid) as AntalArtister
@@ -222,14 +229,27 @@ t1.[Name]
 order by UnikaArtister desc
 
 
-
-
-
-
-
-
-
-
 --5.Vilket är det genomsnittliga antalet artister per spellista?
+select
+t1.[Name] as Spellista,
+--count(distinct( t1.PlaylistId)) as AntalUnikaPlaylists,
+avg(t5.artistid) as SnittArtister,
+count(t5.artistid) as AntalArtister
 
+from music.playlists t1
+
+join music.playlist_track t2
+on t1.PlaylistId=t2.PlaylistId
+
+join music.tracks t3
+on t2.TrackId=t3.TrackId
+
+join music.albums t4
+on t3.AlbumId=t4.AlbumId
+
+join music.artists t5
+on t4.ArtistId=t5.ArtistId
+
+group by
+t1.[Name]
 
