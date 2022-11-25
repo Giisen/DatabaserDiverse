@@ -199,15 +199,28 @@ t2.Name
 
 --4.Vilket är det högsta antal artister som finns på en enskild spellista?
 select
-t1.[Name],
-count(distinct(t1.[Name])) as UniktAntal
+t1.[Name] as Spellista,
+count(distinct(t5.artistid)) as UnikaArtister,
+count(t5.artistid) as AntalArtister
 
-from
-music.playlists t1
+from music.playlists t1
+
+join music.playlist_track t2
+on t1.PlaylistId=t2.PlaylistId
+
+join music.tracks t3
+on t2.TrackId=t3.TrackId
+
+join music.albums t4
+on t3.AlbumId=t4.AlbumId
+
+join music.artists t5
+on t4.ArtistId=t5.ArtistId
+
 group by
 t1.[Name]
- order by
- UniktAntal desc
+order by UnikaArtister desc
+
 
 
 
