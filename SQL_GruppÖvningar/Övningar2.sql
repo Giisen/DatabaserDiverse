@@ -186,7 +186,7 @@ on t1.ArtistId=t2.ArtistId
 join music.tracks t3
 on t3.AlbumId=t2.AlbumId
 
-where t1.[Name] like 'Lost'
+where t1.[Name] like 'Iron Maiden'
 group by
 t1.[Name]
 order by AvgLength2 desc
@@ -196,7 +196,7 @@ order by AvgLength2 desc
 
 select
 t2.Name,
-Format(sum(Cast(t1.Bytes AS BIGINT))*0.000001,'N0') as Storlek
+Format(sum(Cast(t1.Bytes AS BIGINT))*0.000001,'N0') as Storlek  --BIGINT behövs inte eftersom jag gör om til MB
 from music.tracks t1
 
 join music.media_types t2
