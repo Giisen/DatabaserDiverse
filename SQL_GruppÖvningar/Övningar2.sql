@@ -161,6 +161,7 @@ on t1.ArtistId=t2.ArtistId
 join music.tracks t3
 on t3.AlbumId=t2.AlbumId
 
+where t3.MediaTypeId not like 3
 group by
 t1.[Name]
 --format(DateAdd(ms,t3.Milliseconds*1,1),'mm:ss')
