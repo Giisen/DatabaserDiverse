@@ -144,7 +144,7 @@ where t6.[Name]=@playlist
 
 
 
-
+select * from music.playlists
 
 
 --1.Av alla audiospår, vilken artist har längst total speltid?
@@ -161,11 +161,13 @@ on t1.ArtistId=t2.ArtistId
 join music.tracks t3
 on t3.AlbumId=t2.AlbumId
 
-where t3.MediaTypeId not like 3
+where t3.MediaTypeId in(1,4,5,6,8,11,12,13,14,15,16,17,18)
 group by
 t1.[Name]
 --format(DateAdd(ms,t3.Milliseconds*1,1),'mm:ss')
 order by TotLength desc
+
+
 
 --2.Vad är den genomsnittliga speltiden på den artistens låtar?
 select
