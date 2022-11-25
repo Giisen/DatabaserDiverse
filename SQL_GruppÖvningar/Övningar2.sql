@@ -37,24 +37,24 @@ select Id from company.products
 
 
 --3.Av de produkter som inte längre finns I vårat sortiment, hur mycket har vi sålt för totalt till Tyskland?
-select 
---t1.ProductID,
-sum(t1.Unitprice*t1.Quantity) as summa,
-t2.ShipCountry,
-t3.Discontinued
-from company.order_details t1
+--select 
+----t1.ProductID,
+--sum(t1.Unitprice*t1.Quantity) as summa,
+--t2.ShipCountry,
+--t3.Discontinued
+--from company.order_details t1
 
-join company.orders t2
-on t1.OrderId=t2.Id
+--join company.orders t2
+--on t1.OrderId=t2.Id
 
-join company.products t3
-on t1.ProductId=t3.Id
+--join company.products t3
+--on t1.ProductId=t3.Id
 
-where t2.ShipCountry='Germany' and t3.Discontinued=1  
-group by
---t1.ProductID,
-t2.ShipCountry,
-t3.Discontinued
+--where t2.ShipCountry='Germany' and t3.Discontinued=1  
+--group by
+----t1.ProductID,
+--t2.ShipCountry,
+--t3.Discontinued
 
 --4.För vilken produktkategori har vi högst lagervärde?
 --select --top 1
@@ -69,6 +69,7 @@ t3.Discontinued
 --group by
 --t1.CategoryName
 --order by summa desc
+
 
 
 --5. Från vilken leverantör har vi sålt flest produkter totalt under sommaren 2013?
@@ -126,9 +127,19 @@ on t3.ArtistId=t4.ArtistId
 join music.playlist_track t5
 on t1.TrackId=t5.TrackId
 
-where t5.PlaylistId=17
+--where t5.PlaylistId=17 Du kan använda denna utan att göra nedanstående eftersom 'Heavy Metal Classic' har id:17
 
---Musik
+
+join music.playlists t6
+on t5.PlaylistId=t6.PlaylistId
+
+where t6.[Name]=@playlist
+
+
+
+
+---------------------------------------------Musik----------------------------------------------
+
 --1.Av alla audiospår, vilken artist har längst total speltid?
 select
 t1.[Name] as ArtistNamn,
@@ -153,7 +164,9 @@ select
 t1.[Name] as ArtistNamn,
 count(distinct t3.TrackId) as Antal,
 sum(t3.Milliseconds) as TotLength,
-sum(t3.Milliseconds)/count(distinct t3.TrackId) as AvgLength
+--sum(t3.Milliseconds)/count(distinct t3.TrackId) as AvgLength,
+avg(t3.Milliseconds) as AvgLength2
+
 from
 music.artists t1
 
@@ -166,7 +179,7 @@ on t3.AlbumId=t2.AlbumId
 where t1.[Name] like 'Lost'
 group by
 t1.[Name]
-order by AvgLength desc
+order by AvgLength2 desc
 
 
 --3.Vad är den sammanlagda filstorleken för all video?
@@ -183,5 +196,27 @@ where t2.[Name] like '%video%'
 group by
 t2.Name
 
+
+--4.Vilket är det högsta antal artister som finns på en enskild spellista?
+select
+t1.[Name],
+count(distinct(t1.[Name])) as UniktAntal
+
+from
+music.playlists t1
+group by
+t1.[Name]
+ order by
+ UniktAntal desc
+
+
+
+
+
+
+
+
+
+--5.Vilket är det genomsnittliga antalet artister per spellista?
 
 
