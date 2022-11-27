@@ -207,6 +207,8 @@ group by
 t2.Name
 
 
+
+
 --4.Vilket är det högsta antal artister som finns på en enskild spellista?
 select --top 1
 t1.[Name] as Spellista,

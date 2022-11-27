@@ -31,27 +31,29 @@ use Everyloop;
 --3.Uppdatera (kopia på) tabellen airports så att alla null-värden i kolumnerna Time och DST byts ut mot ’-’
 
 
-select * into Airports2 from Airports;
+--select * into Airports2 from Airports;
 
-Update  Airports2
---set [Time]= COALESCE([Time],'-')
---set [DST] = COALESCE([DST],'-');
-set [DST] = ISNULL([DST],'-');  --ISNull är ett alternativ till coalesce
+--Update  Airports2
+----set [Time]= COALESCE([Time],'-')
+----set [DST] = COALESCE([DST],'-');
+--set [DST] = ISNULL([DST],'-');  --ISNull är ett alternativ till coalesce
 
 
-select * from Airports2;
+--select * from Airports2;
 
 --4.Ta bort de rader från (kopia på) tabellen Elements där ”Name” är någon av följande: 'Erbium', 'Helium', 'Nitrogen', 'Platinum', 'Selenium', samt alla rader där ”Name” börjar på någon av bokstäverna d, k, m, o, eller u.
 
---select * into Elements2 from Elements;
+--select * into Elements2 from [Elements];
 
 --Delete from Elements2
---where Name in('Erbium', 'Helium', 'Nitrogen', 'Platinum', 'Selenium')
--- Or Name like 'D%'
--- Or Name like 'K%'
--- Or Name like 'M%'
--- or Name like 'O%'
--- or name like 'U%';
+--where [Name] in('Erbium', 'Helium', 'Nitrogen', 'Platinum', 'Selenium')
+-- Or [Name] like 'D%'
+-- Or [Name] like 'K%'
+-- Or [Name] like 'M%'
+-- or [Name] like 'O%'
+-- or [Name] like 'U%';
+
+----Kan även köra regex Name Like'[dkmou]%'
 
 --select * from Elements2;
 
@@ -133,5 +135,4 @@ select
 DATETIME2FROMPARTS(2019,01,[Integer],09,[Integer],0,0,7) as [DateTime],
 Integer%2 as Bool
 from Types2;
-
 
